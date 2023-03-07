@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Start WebExtension",
+            "type": "firefox",
+            "request": "attach",
+            "addonPath": "${workspaceFolder}",
+            "skipFiles": [
+                "http?(s):/**"
+            ]
+        }
+    ]
+}
