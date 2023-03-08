@@ -10,8 +10,22 @@
   window.hasRun = true;
 
 	function init() {
-		chrome.storage.sync.get("hn_banned", function(value) {
-			var users = value.hn_banned || {};
+		console.log("Running again")
+		/*
+		//Transform to new storage place
+		browser.storage.local.get("hn_banned").then((item)=>{
+			//if(item==null) {
+				console.log("Changing storage place")
+				browser.storage.sync.get("hn_banned").then((item)=>{
+					browser.storage.local.set({"hn_banned_v1":item.hn_banned})
+				})
+			//} else {
+			//	console.log("Nothing to do")
+			//}
+		})
+*/
+		chrome.storage.local.get("hn_banned_v1", function(value) {
+			var users = value.hn_banned_v1 || {};
 
 			function banUser(username) {
 				users[username] = {
@@ -19,12 +33,12 @@
 					blocked: true,
 					timestamp: Date.now()
 				};
-				chrome.storage.sync.set({"hn_banned": users});
+				chrome.storage.local.set({"hn_banned_v1": users});
 			}
 
 			function unbanUser(username) {
 				delete users[username];
-				chrome.storage.sync.set({"hn_banned": users});
+				chrome.storage.local.set({"hn_banned_v1": users});
 			}
 
 			function listener(changes, namespace) {

@@ -6,6 +6,7 @@
   "homepage_url": "https://go.minortom.net/Ydf",
   "permissions": [
     "storage",
+    "unlimitedStorage",
     "http://news.ycombinator.com/*",
     "https://news.ycombinator.com/*"
   ],
